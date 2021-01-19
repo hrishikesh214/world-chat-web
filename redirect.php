@@ -3,12 +3,14 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 ini_set('max_execution_time', 300); //300 seconds = 5 minutes. In case if your CURL is slow and is loading too much (Can be IPv6 problem)
 
+require('./App/Config.php');
+
 error_reporting(E_ALL);
 
 define('OAUTH2_CLIENT_ID', '799531216810016829');
 define('OAUTH2_CLIENT_SECRET', '0PuE1_ARaQGUtIxlz-XbrgkxoJIJ0q1Q');
 
-$thisurl = 'http://localhost/dc/webhook/redirect.php';
+$thisurl = $base_url.'redirect.php';
 $authorizeURL = 'https://discord.com/api/oauth2/authorize';
 $tokenURL = 'https://discord.com/api/oauth2/token';
 $apiURLBase = 'https://discord.com/api/users/@me';
@@ -58,7 +60,7 @@ if(session('access_token')) {
   	'id' => $user->id,
   	'discriminator' => $user->discriminator
   );
-  header('location: http://localhost/dc/webhook/');
+  header('location: '.$base_url);
   die();
 
 } else {
