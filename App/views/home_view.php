@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -97,23 +98,29 @@
 	</style>
 	
 	<div class="navbar">
+		<?php if(!$_SESSION['login']): ?>
 		<div class="hmb">
     		<div class="ele" onclick="javascript:login()">Login</div>
     	</div>
+    	<?php endif ?>
+    	<?php if($_SESSION['login']): ?>
     	<div class="hmb">
     		<div class="ele" onclick="javascript:logout()">Logout</div>
     	</div>
+    	<?php endif ?>
 	</div>
 	<div class="container">
 		<div class="inner-container">
-
+			<?php //debug($_SESSION);?>
 		</div>
 	</div>
     <div class="foot-msgbar">
+	<?php if($_SESSION['login']): ?> 
     	<div class="fmb">
     		<input type="text" name="msg" class="msgbar" placeholder="type message here">
 	    	<button class="send-btn" onclick="javascript:send()">Send</button>
     	</div>
+    <?php endif ?>
     </div>
     <script type="text/javascript">
 
@@ -123,14 +130,23 @@
     	const logout = () => {
     		window.location = "<?=base_url('Home/logout')?>";
     	}
+    	
     	const send = function(){
     		let m = $(".msgbar").val();
+    		$(".msgbar").val('');
+    		<?php if($_SESSION['login']): ?>
     		$.post("<?=base_url('Home/send')?>", {
     			msg:m, 
     			username: "<?=$user['username']?>",
     			avatar_url: "<?=$user['avatar_url']?>"
     		});
-    	}
+
+    		<?php endif ?>
+			}
+
+		$('.msgbar').keypress(function(event){
+			if(event.code == 'Enter'){ send(); }
+		});
     	
     </script>
 </body>
