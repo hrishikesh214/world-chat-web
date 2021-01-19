@@ -22,7 +22,7 @@ class Home extends CodeRunner {
 
 		$webhookurl = "https://discord.com/api/webhooks/799532350899748874/e155BKESRmauPE62A4JHm3MZSLcve_tKIITPxX8irUIVmvDeKk9pFyWtArSGNBjCede2";
 
-		$webhookurl = "https://discord.com/api/webhooks/786108405373861898/sI1QiqzhRTcW3ugMBHXZARDp6MtHB5TDFzS9kelDYDBxLDbkUpmlocRXyCF7fIJdUWQI";
+		// $webhookurl = "https://discord.com/api/webhooks/786108405373861898/sI1QiqzhRTcW3ugMBHXZARDp6MtHB5TDFzS9kelDYDBxLDbkUpmlocRXyCF7fIJdUWQI";
 
 		$timestamp = date("c", strtotime("now"));
 
@@ -55,7 +55,6 @@ class Home extends CodeRunner {
 	}
 
 	public function logout(){
-		// $_SESSION['user']['id'] == 0;
 		unset($_SESSION['user']);
 		// debug($_SESSION);
 		// die();
